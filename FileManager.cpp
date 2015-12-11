@@ -4,21 +4,10 @@ using namespace std;
 
 string FileManager::_sep="/";
 
-FileManager::File::File (const string& path, const string& date):_path(path)
-{
-	struct std::tm tm;
-	std::istringstream ss(date);
-	ss >> std::get_time(&tm, "%Y:%m:%d %T");
-	_date = mktime(&tm);
-}
-
-time_t FileManager::File::operator-(const File& file)
-{
-	return _date-file._date;
-}
 
 
-bool order (FileManager::File first, FileManager::File second)
+
+bool order (File first, File second)
 {
 	return (first.getDate() < second.getDate ());
 }
@@ -27,6 +16,7 @@ void FileManager::sort ()
 {
 	std::sort(_file.begin(), _file.end(), order);
 }
+
 
 void FileManager::scanFolders (const string& name)
 {

@@ -13,9 +13,11 @@ class Histogramme
 {
 	private:
 		vector <int> _min;
+		vector <File> _file;
 		
 	public:
 		void createHistogramme (const string& path, const string& name_csv);
+
 };
 
 #endif

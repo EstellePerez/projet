@@ -3,7 +3,7 @@
 #define HISTO_SIZE 20
 
 void Histogramme::createHistogramme (const string& path, const string& name_csv)
-{
+{	
 	FileManager f_m;
 	f_m.scanFolders (path);
 	f_m.sort();
@@ -17,12 +17,13 @@ void Histogramme::createHistogramme (const string& path, const string& name_csv)
 	}
 	
 	ofstream file("result.csv", ios::in|ios::trunc);
-	vector<FileManager::File> new_vector =f_m.getFile();
+	_file =f_m.getFile();
 	if (file)
 	{
-		for (unsigned int i=1; i<new_vector.size(); i++)
+		cout<<_file.size()<<endl;
+		for (unsigned int i=1; i<_file.size(); i++)
 		{
-			int t =new_vector[i]-new_vector[i-1];
+			int t =_file[i]-_file[i-1];
 			int j=0;
 			cout<<t<<endl;
 			while (t>=lim[j])
@@ -32,8 +33,6 @@ void Histogramme::createHistogramme (const string& path, const string& name_csv)
 				j++;
 			}
 			tab [j]++;
-// 			file << t <<endl;
-// 			cout << t <<endl;
 		}
 		
 		for (int i=1; i<HISTO_SIZE-1; i++)
